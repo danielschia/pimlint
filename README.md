@@ -20,9 +20,9 @@ em uma lista de erros acionável, com código de saída não-zero para CI.
 pip install -r requirements.txt
 
 python -m pimlint --list-channels
-python -m pimlint produtos.csv --channel amazon
-python -m pimlint produtos.csv --channel shopify --format json -o relatorio.json
-python -m pimlint produtos.csv --channel amazon --all
+python -m pimlint products.csv --channel amazon
+python -m pimlint products.csv --channel shopify --format json -o relatorio.json
+python -m pimlint products.csv --channel amazon --all
 ```
 
 Códigos de saída:
@@ -91,11 +91,30 @@ python -m pytest
 não numérico, URL com esquema inválido, enum fora do dominio, valor de estoque
 negativo) para exercitar cada regra.
 
+## Relatório HTML
+
+`--format html` produz um documento único, sem dependências externas, com:
+
+- **Indicadores no topo** — completeness score com barra e linha de referência,
+  produtos reprovados, total de violações, produtos aprovados
+- **Atributos que mais reprovam** — ordenado por ocorrência, com a severidade
+  mais grave de cada coluna. É a ordem de ataque: o primeiro item dessa lista
+  destrava mais linhas do que os dez seguintes juntos
+- **Reprovação por produto** — cada linha do CSV com quantos obrigatórios foram
+  preenchidos
+- **Violações** — tabela completa, filtrável por texto e severidade, com o valor
+  encontrado exibido
+- **Colunas fora do schema** — o que existe no CSV e não está no schema
+
+Exemplo gerado: [`samples/report_amazon.html`](samples/report_amazon.html)
+
 ## Estado atual
 
 Funcionando: schema loader, validação de tipo/presença/tamanho/padrão/enum,
-completeness score, ordenação por severidade, saída em texto e JSON, códigos de
-saída para CI, detecção de colunas fora do schema, tratamento de BOM/CRLF.
+completeness score, ordenação por severidade, saídas em texto, JSON e HTML,
+códigos de saída para CI, detecção de colunas fora do schema, tratamento de
+BOM/CRLF, relatório HTML com filtros, GitHub Actions com artifacts do relatório.
 
-Falta: relatório HTML, GitHub Action, validação de arquivos de mapping, e
-schema de canal carregado de fonte externa (em vez de versionado no repo).
+Falta: validação de arquivos de mapping, comparação de dois arquivos (feed antes
+× depois da correção), e schema de canal carregado de fonte externa em vez de
+versionado no repo.

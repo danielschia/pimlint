@@ -12,6 +12,7 @@ import json
 import sys
 from pathlib import Path
 
+from .report import render_report
 from .schema import load_schemas
 from .validator import Severity, validate_file
 
@@ -72,7 +73,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--schemas", default=str(DEFAULT_SCHEMA_DIR),
                         help="diretório com os schemas YAML")
     parser.add_argument("--format", "-f", default="text",
-                        choices=("text", "json"), help="formato da saída")
+                        choices=("text", "json", "html"),
+                        help="formato da saída")
     parser.add_argument("--output", "-o", help="escreve a saída em arquivo")
     parser.add_argument("--all", action="store_true",
                         help="mostra todas as ocorrências, não só as 20 primeiras")
@@ -115,12 +117,17 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.format == "json":
         output = json.dumps(report.as_dict(), ensure_ascii=False, indent=2)
+    elif args.format == "html":
+        output = render_report(report, source_name=csv_path.name)
     else:
         output = _render_text(report, show_all=args.all)
 
     if args.output:
-        Path(args.output).write_text(output, encoding="utf-8")
-        print(f"relatório escrito em {args.output}", file=sys.stderr)
+        out_path = Path(args.output)
+        if out_path.suffix.lower() != ".html" and args.format == "html":
+            out_path = out_path.with_suffix(".html")
+        out_path.write_text(output, encoding="utf-8")
+        print(f"relatório escrito em {out_path}", file=sys.stderr)
     else:
         print(output)
 
