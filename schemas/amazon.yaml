@@ -1,0 +1,49 @@
+channel: amazon
+version: "1"
+
+attributes:
+  sku:
+    type: string
+    required: true
+    max_length: 40
+  asin:
+    type: string
+    required: false
+    max_length: 10
+  title:
+    type: string
+    required: true
+    min_length: 3
+    max_length: 200
+  brand:
+    type: string
+    required: true
+    max_length: 100
+  description:
+    type: string
+    required: false
+    max_length: 10000
+  price:
+    type: float
+    required: true
+  currency:
+    type: enum
+    required: true
+    values: [BRL, USD, EUR, GBP, MXN]
+  quantity:
+    type: int
+    required: true
+  condition:
+    type: enum
+    required: true
+    values: [new, used, refurbished, collectible]
+  category:
+    type: string
+    required: true
+  weight_kg:
+    type: float
+    required: false
+  image_main:
+    type: string
+    required: true
+    pattern: "^https?://.+"

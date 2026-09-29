@@ -1,0 +1,11 @@
+sku,title,brand,price,currency,quantity,condition,category,weight_kg,image_main
+CAM-001,Camiseta Algodão Masculina,Marca Norte,89.90,BRL,120,new,vestuario-homem,0.25,https://cdn.exemplo.com/img/cam-001.jpg
+CAM-002,Tênis Esportivo Runner,Bulls Sport,349.00,BRL,45,new,calcado-esportivo,0.80,https://cdn.exemplo.com/img/cam-002.jpg
+CAM-003,"Mochila Urbana 25L",,199.90,BRL,0,new,mala-e-mochila,0.90,
+CAM-004,Fone Bluetooth Pro,Marca Norte,many,BRL,30,new,eletronicos,0.20,ftp://cdn.exemplo.com/img/fone.jpg
+CAM-005,,Marca Norte,59.90,BRL,15,new,eletronicos,0.05,https://cdn.exemplo.com/img/fone-2.jpg
+CAM-006,Watch Esportivo XYZ,Marca Sul,749.00,USD,8,usado,eletronicos,0.15,https://cdn.exemplo.com/img/watch.jpg
+CAM-007,Cadeira Gamer Ergonômica,Marca Sul,1899.00,BRL,6,new,moveis-escritorio,22.50,https://cdn.exemplo.com/img/cadeira.jpg
+CAM-008,Kit 8 Canecas Porcelana,Marca Norte,129.90,BRL,75,new,cozinha,1.80,https://cdn.exemplo.com/img/canecas.jpg
+CAM-009,Luminária de Mesa Articulada,Marca Leste,259.00,BRL,3,new,iluminacao,3.20,https://cdn.exemplo.com/img/luminaria.jpg
+CAM-010,Teclado Mecânico RGB,Marca Norte,479.00,BRL,-2,new,perifericos,1.10,https://cdn.exemplo.com/img/teclado.jpg

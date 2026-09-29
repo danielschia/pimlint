@@ -1,0 +1,47 @@
+channel: shopify
+version: "1"
+
+attributes:
+  sku:
+    type: string
+    required: true
+    max_length: 64
+  title:
+    type: string
+    required: true
+    min_length: 3
+    max_length: 255
+  description:
+    type: string
+    required: false
+    max_length: 5000
+  brand:
+    type: string
+    required: false
+    max_length: 255
+  price:
+    type: float
+    required: true
+  compare_at_price:
+    type: float
+    required: false
+  currency:
+    type: enum
+    required: true
+    values: [BRL, USD, EUR, ARS, MXN, CLP, COP]
+  stock_quantity:
+    type: int
+    required: true
+  available:
+    type: bool
+    required: false
+  weight_kg:
+    type: float
+    required: false
+  image_url:
+    type: string
+    required: false
+    pattern: "^https?://.+"
+  created_at:
+    type: date
+    required: false
