@@ -44,7 +44,10 @@ jobs:
         run: |
           grep -q "</html>" report.html
           grep -q "Atributos que mais reprovam" report.html
-          ! grep -q "cdn\." report.html
+          # nenhum recurso externo: sem <script src>, sem stylesheet link, sem CDN
+          ! grep -q '<script src' report.html
+          ! grep -q 'rel="stylesheet"' report.html
+          ! grep -qE '(src|href)="https?://' report.html
 
       - name: Anexar relatório
         uses: actions/upload-artifact@v4

@@ -79,13 +79,12 @@ def test_tags_are_balanced(tmp_path, schema):
 
 
 def test_is_self_contained_no_external_refs(tmp_path, schema):
-    report = _write(tmp_path, "sku,title,price,currency\nAB-1,Ok,1,BRL\n", schema)
+    report = _write(tmp_path, "sku,title,price,currency\nAB-1,Produto,1,BRL\n", schema)
     out = render_report(report, source_name="p.csv")
-    # nenhum recurso externo: nem CDN, nem script src, nem link stylesheet
-    assert "cdn." not in out
+    # nenhum recurso externo: sem script src, sem stylesheet link, sem src/href http
     assert "<script src" not in out
     assert 'rel="stylesheet"' not in out
-    assert "http://" not in out.replace("http://www.w3.org", "")
+    assert not re.search(r'(src|href)="https?://', out)
 
 
 def test_numbers_match_the_report(tmp_path, schema):
